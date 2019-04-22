@@ -1,0 +1,9 @@
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\bin\Debug\netcoreapp2.1\Service.Common.deps.json
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\bin\Debug\netcoreapp2.1\Service.Common.dll
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\obj\Debug\netcoreapp2.1\Service.Common.csprojAssemblyReference.cache
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\obj\Debug\netcoreapp2.1\Service.Common.csproj.CoreCompileInputs.cache
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\obj\Debug\netcoreapp2.1\Service.Common.AssemblyInfoInputs.cache
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\obj\Debug\netcoreapp2.1\Service.Common.AssemblyInfo.cs
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\bin\Debug\netcoreapp2.1\Service.Common.pdb
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\obj\Debug\netcoreapp2.1\Service.Common.dll
+D:\Projects\microservice-architecture\eCommerce\microservice\Service.Common\obj\Debug\netcoreapp2.1\Service.Common.pdb
