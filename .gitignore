@@ -1,3 +1,5 @@
 # ignore dll development folder
 /**/bin
 /**/obj
+/kafka_2.12-2.2.0
+/zookeeper-3.4.14
