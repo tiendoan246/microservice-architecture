@@ -1,0 +1,3 @@
+# ignore dll development folder
+**/bin
+**/obj
