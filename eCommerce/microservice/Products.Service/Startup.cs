@@ -1,13 +1,10 @@
-﻿using System.Net;
-using EasyNetQ;
-using EventStore.ClientAPI;
+﻿using EventStore.ClientAPI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Products.Service.Products.Handlers;
-using Service.Common.MessageBus;
 using Service.Common.Repository;
 
 namespace Products.Service
@@ -25,6 +22,9 @@ namespace Products.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddScoped(typeof(IProductCommandHandlers), typeof(ProductCommandHandlers));
+            services.AddScoped(typeof(IRepository), typeof(EventStoreRepository));
+            services.AddScoped(typeof(IEventStoreConnection), typeof(EventStoreRepository));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,20 +41,6 @@ namespace Products.Service
 
             app.UseHttpsRedirection();
             app.UseMvc();
-            ConfigureHandlers();
-        }
-
-        private void ConfigureHandlers()
-        {
-            var bus = new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"));
-            ServiceLocator.Bus = bus;
-
-            //Should get this from a config setting instead of hardcoding it.
-            var eventStoreConnection = EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, 12900));
-            eventStoreConnection.ConnectAsync().Wait();
-            var repository = new EventStoreRepository(eventStoreConnection, bus);
-
-            ServiceLocator.ProductCommands = new ProductCommandHandlers(repository);
         }
     }
 }

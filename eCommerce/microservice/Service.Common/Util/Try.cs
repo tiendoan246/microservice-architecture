@@ -36,7 +36,7 @@ namespace Service.Common.Util
                 }
                 catch (Exception ex)
                 {
-                    if (onFailure != null) onFailure();
+                    onFailure?.Invoke();
                     if (attempt < maxTries) continue;
 
                     return new TryResult(ex);

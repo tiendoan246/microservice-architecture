@@ -1,4 +1,5 @@
-﻿using EventStore.ClientAPI;
+﻿using EasyNetQ;
+using EventStore.ClientAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Service.Common.Exceptions;
@@ -6,6 +7,7 @@ using Service.Common.MessageBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,10 +33,13 @@ namespace Service.Common.Repository
             };
         }
 
-        public EventStoreRepository(IEventStoreConnection eventStoreConnection, IMessageBus bus)
+        public EventStoreRepository()
         {
-            this.eventStoreConnection = eventStoreConnection;
-            this.bus = bus;
+            this.bus = new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"));
+
+            //Should get this from a config setting instead of hardcoding it.
+            this.eventStoreConnection = EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, 12900));
+            eventStoreConnection.ConnectAsync().Wait();
         }
 
         public TAggregate GetById<TAggregate>(Guid id) where TAggregate : Aggregate

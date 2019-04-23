@@ -1,5 +1,4 @@
-﻿using Products.Common.Dto;
-using Products.Service.Products.Commands;
+﻿using Products.Service.Products.Commands;
 using Service.Common.Repository;
 using System;
 
@@ -20,7 +19,7 @@ namespace Products.Service.Products.Handlers
             // ProductDto existingProduct = null;
 
             // Process
-            var series = new Products.Domain.Product(message.Id, message.Name, message.Description, message.Price);
+            var series = new Domain.Product(message.Id, message.Name, message.Description, message.Price);
             repository.Save(series);
         }
 
@@ -30,12 +29,12 @@ namespace Products.Service.Products.Handlers
 
             int committedVersion = message.OriginalVersion;
 
-            if (!String.Equals(product.Name, message.NewTitle, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(product.Name, message.NewTitle, StringComparison.OrdinalIgnoreCase))
             {
                 product.ChangeName(message.NewTitle, committedVersion++);
             }
 
-            if (!String.Equals(product.Description, message.NewDescription, StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(product.Description, message.NewDescription, StringComparison.OrdinalIgnoreCase))
             {
                 product.ChangeDescription(message.NewDescription, committedVersion++);
             }
