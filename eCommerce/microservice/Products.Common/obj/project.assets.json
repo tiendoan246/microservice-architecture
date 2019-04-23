@@ -1549,6 +1549,16 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Framework.DataModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Framework.DataModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Framework.DataModel.dll": {}
+        }
+      },
       "Service.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
@@ -5506,6 +5516,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Framework.DataModel/1.0.0": {
+      "type": "project",
+      "path": "../Framework.DataModel/Framework.DataModel.csproj",
+      "msbuildProject": "../Framework.DataModel/Framework.DataModel.csproj"
+    },
     "Service.Common/1.0.0": {
       "type": "project",
       "path": "../Service.Common/Service.Common.csproj",
@@ -5514,6 +5529,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "Framework.DataModel >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0",
       "Newtonsoft.Json >= 12.0.2",
       "Service.Common >= 1.0.0"
@@ -5549,6 +5565,9 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
+            "D:\\Projects\\microservice-architecture\\eCommerce\\microservice\\Framework.DataModel\\Framework.DataModel.csproj": {
+              "projectPath": "D:\\Projects\\microservice-architecture\\eCommerce\\microservice\\Framework.DataModel\\Framework.DataModel.csproj"
+            },
             "D:\\Projects\\microservice-architecture\\eCommerce\\microservice\\Service.Common\\Service.Common.csproj": {
               "projectPath": "D:\\Projects\\microservice-architecture\\eCommerce\\microservice\\Service.Common\\Service.Common.csproj"
             }

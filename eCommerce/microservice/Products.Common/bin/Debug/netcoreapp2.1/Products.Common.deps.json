@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v2.1": {
       "Products.Common/1.0.0": {
         "dependencies": {
+          "Framework.DataModel": "1.0.0",
           "Newtonsoft.Json": "12.0.2",
           "Service.Common": "1.0.0"
         },
@@ -921,6 +922,11 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "Framework.DataModel/1.0.0": {
+        "runtime": {
+          "Framework.DataModel.dll": {}
+        }
+      },
       "Service.Common/1.0.0": {
         "dependencies": {
           "EasyNetQ": "3.4.5",
@@ -1541,6 +1547,11 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "Framework.DataModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Service.Common/1.0.0": {
       "type": "project",

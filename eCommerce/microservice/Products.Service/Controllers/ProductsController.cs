@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
+using Framework.DataModel.Response;
 using Microsoft.AspNetCore.Mvc;
+using Products.Common.Dto;
 using Products.Service.DataTransferObjects.Commands.Products;
 using Products.Service.Products.Commands;
 using Products.Service.Products.Handlers;
-using Service.Common.Exceptions;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Products.Service.Controllers
 {
@@ -23,33 +20,24 @@ namespace Products.Service.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(CreateProductCommand cmd)
+        public IActionResult Post([FromBody]CreateProductCommand cmd)
         {
             if (string.IsNullOrWhiteSpace(cmd.Name))
             {
-                var response = new HttpResponseMessage(HttpStatusCode.Forbidden)
+                return Json(new CreateProductResponse
                 {
-                    Content = new StringContent("code must be supplied in the body"),
-                    ReasonPhrase = "Missing product code"
-                };
-                return Json(response);
+                    Code = ErrorCode.Error
+                });
             }
 
-            try
-            {
-                var command = new CreateProduct(Guid.NewGuid(), cmd.Name, cmd.Description, cmd.Price);
-                handler.Handle(command);
+            var command = new CreateProduct(Guid.NewGuid(), cmd.Name, cmd.Description, cmd.Price);
+            handler.Handle(command);
 
-                return Json(string.Format("http://localhost:8181/api/products/{0}", command.Id));
-            }
-            catch (AggregateNotFoundException)
+            return Json(new CreateProductResponse
             {
-                return NotFound();
-            }
-            catch (AggregateDeletedException)
-            {
-                return Conflict();
-            }
+                Code = ErrorCode.Succeeded,
+                CommandId = command.Id
+            });
         }
 
         // GET: api/<controller>
@@ -64,24 +52,6 @@ namespace Products.Service.Controllers
         public string Get(int id)
         {
             return "value";
-        }
-
-        // POST api/<controller>
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }

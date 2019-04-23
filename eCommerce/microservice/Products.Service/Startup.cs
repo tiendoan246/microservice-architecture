@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Products.Service.Products.Handlers;
 using Service.Common.Repository;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Products.Service
 {
@@ -25,6 +26,12 @@ namespace Products.Service
             services.AddScoped(typeof(IProductCommandHandlers), typeof(ProductCommandHandlers));
             services.AddScoped(typeof(IRepository), typeof(EventStoreRepository));
             services.AddScoped(typeof(IEventStoreConnection), typeof(EventStoreRepository));
+
+            // Swagger
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new Info { Title = "Microservice", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +40,15 @@ namespace Products.Service
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // Enable middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+
+                // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+                // specifying the Swagger JSON endpoint.
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Microservice V1");
+                });
             }
             else
             {

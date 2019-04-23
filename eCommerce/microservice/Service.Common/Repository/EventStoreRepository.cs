@@ -35,10 +35,8 @@ namespace Service.Common.Repository
 
         public EventStoreRepository()
         {
-            this.bus = new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"));
-
-            //Should get this from a config setting instead of hardcoding it.
-            this.eventStoreConnection = EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, 12900));
+            bus = new RabbitMqBus(RabbitHutch.CreateBus("host=localhost"));
+            eventStoreConnection = EventStoreConnection.Create(new IPEndPoint(IPAddress.Loopback, 1113));
             eventStoreConnection.ConnectAsync().Wait();
         }
 

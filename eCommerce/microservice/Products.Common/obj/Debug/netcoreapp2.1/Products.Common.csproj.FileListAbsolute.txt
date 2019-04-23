@@ -10,3 +10,5 @@ D:\Projects\microservice-architecture\eCommerce\microservice\Products.Common\obj
 D:\Projects\microservice-architecture\eCommerce\microservice\Products.Common\obj\Debug\netcoreapp2.1\Products.Common.csproj.CopyComplete
 D:\Projects\microservice-architecture\eCommerce\microservice\Products.Common\obj\Debug\netcoreapp2.1\Products.Common.dll
 D:\Projects\microservice-architecture\eCommerce\microservice\Products.Common\obj\Debug\netcoreapp2.1\Products.Common.pdb
+D:\Projects\microservice-architecture\eCommerce\microservice\Products.Common\bin\Debug\netcoreapp2.1\Framework.DataModel.dll
+D:\Projects\microservice-architecture\eCommerce\microservice\Products.Common\bin\Debug\netcoreapp2.1\Framework.DataModel.pdb
